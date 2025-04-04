@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.alizzelol.gamesretrofit.components.MainImage
 import com.alizzelol.gamesretrofit.components.MainTopBar
+import com.alizzelol.gamesretrofit.components.MetaWebsite
 import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 
@@ -53,7 +54,7 @@ fun ContentDetailView(pad:PaddingValues, viewModel: GamesViewModel){
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 5.dp)
         ) {
-
+            MetaWebsite(state.website)
         }
     }
 
