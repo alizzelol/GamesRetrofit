@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.alizzelol.gamesretrofit.components.MainImage
 import com.alizzelol.gamesretrofit.components.MainTopBar
 import com.alizzelol.gamesretrofit.components.MetaWebsite
+import com.alizzelol.gamesretrofit.components.RewiewCard
 import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 
@@ -55,7 +56,25 @@ fun ContentDetailView(pad:PaddingValues, viewModel: GamesViewModel){
                 .padding(start = 20.dp, end = 5.dp)
         ) {
             MetaWebsite(state.website)
+            RewiewCard(state.metacritic)
         }
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

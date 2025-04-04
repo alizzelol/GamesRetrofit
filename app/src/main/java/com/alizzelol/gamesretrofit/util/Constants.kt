@@ -7,6 +7,7 @@ class Constants { //para guardar constantes que usar en el proyecto
         const val ENDPOINT = "games"
         const val API_KEY = "?key=833f198f41ac48a0b60636b697352d79"
         const val CUSTOM_BLACK = 0xFF2B2626 //Añadir color por defecto, al ser constant
+        const val CUSTOM_GREEN = 0xFF209B14
     }
 }
 
