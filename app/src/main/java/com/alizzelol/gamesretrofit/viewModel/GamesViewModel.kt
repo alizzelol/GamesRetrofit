@@ -54,4 +54,14 @@ class GamesViewModel @Inject constructor(private val repo: GamesRepository) : Vi
         }
     }
 
+    fun clean(){ //limpiar variables para que actualice más rápido, dejándolas en blanco
+        state = state.copy(
+            name = "",
+            description_raw = "",
+            metacritic = 111, //111 para superar el 100, max puntuación
+            website = "",
+            background_image = "",
+        )
+    }
+
 }
