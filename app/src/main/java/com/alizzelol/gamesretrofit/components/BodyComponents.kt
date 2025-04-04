@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -40,7 +41,8 @@ import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_GREEN
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable //TopBar genérico
 //Unit significa void en Java, que no devuelve ningún valor significativo
-fun MainTopBar(title:String, showBackButton:Boolean = false, onClickBackButton: () -> Unit){
+fun MainTopBar(title:String, showBackButton:Boolean = false,
+               onClickBackButton: () -> Unit, onClickAction: () -> Unit){
     TopAppBar(
         title = { Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -50,6 +52,17 @@ fun MainTopBar(title:String, showBackButton:Boolean = false, onClickBackButton: 
             if(showBackButton){ //Botón de ir hacia atrás
                 IconButton(onClick = onClickBackButton){
                     Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        //icono de flecha para volver a la vista anterior
+                        contentDescription = "",
+                        tint = Color.White
+                    )
+                }
+            }
+        },
+        actions = {
+            if(!showBackButton){ //Botón de ir hacia atrás
+                IconButton(onClick = onClickAction){
+                    Icon(imageVector = Icons.Default.Search, //icono de buscar
                         contentDescription = "",
                         tint = Color.White
                     )

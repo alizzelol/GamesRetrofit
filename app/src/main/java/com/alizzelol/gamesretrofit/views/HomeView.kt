@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.alizzelol.gamesretrofit.components.CardGame
+import com.alizzelol.gamesretrofit.components.MainImage
 import com.alizzelol.gamesretrofit.components.MainTopBar
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
@@ -24,7 +25,9 @@ import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
 fun HomeView(viewModel: GamesViewModel, navController: NavController){
     Scaffold (
         topBar = { //Barra arriba de la Activity
-            MainTopBar(title = "API GAMES") { }
+            MainTopBar(title = "API GAMES", onClickBackButton = {}) {
+                navController.navigate("SearchGameView")
+            }
         }
     ) {
         ContentHomeView(viewModel, it, navController)

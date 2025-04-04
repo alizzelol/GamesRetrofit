@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -42,9 +43,9 @@ fun DetailView(viewModel: GamesViewModel, navController: NavController, id : Int
 
     Scaffold(
         topBar = {
-            MainTopBar(title = viewModel.state.name, showBackButton = true) {
-                navController.popBackStack() //para que regrese hacia atrás
-            }
+            MainTopBar(title = viewModel.state.name,
+                showBackButton = true,
+                onClickBackButton = {navController.popBackStack() }) { }
         }
 
     ) {
