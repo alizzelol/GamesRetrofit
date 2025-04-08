@@ -62,7 +62,8 @@ fun ContentHomeView(viewModel: GamesViewModel, pad:PaddingValues, navController:
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-
+                    val zero = 0
+                    navController.navigate("DetailView/${zero}/?${search}")
                 }
             ),
             modifier = Modifier.fillMaxWidth()
@@ -75,7 +76,8 @@ fun ContentHomeView(viewModel: GamesViewModel, pad:PaddingValues, navController:
         ) {
             items(games){ item ->
                 CardGame(item) {
-                    navController.navigate("DetailView/${item.id}") //llevar id del item
+                    navController.navigate("DetailView/${item.id}/?${search}")
+                //llevar id del item, buscar por search
                 }
                 Text(text = item.name,
                     fontWeight = FontWeight.ExtraBold,

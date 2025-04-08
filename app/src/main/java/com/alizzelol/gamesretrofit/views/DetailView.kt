@@ -30,9 +30,14 @@ import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 
 @Composable
-fun DetailView(viewModel: GamesViewModel, navController: NavController, id : Int){
+fun DetailView(viewModel: GamesViewModel, navController: NavController, id : Int, name : String?){
     LaunchedEffect(Unit) {
-        viewModel.getGameById(id)
+        if(id == 0){
+            name?.let { viewModel.getGameByName(it.replace(" ", "-")) }
+            //it.replace(" ", "-") para no tener que escribir - entre palabras al buscar el juego
+        } else {
+            viewModel.getGameById(id)
+        }
     }
 
     DisposableEffect(Unit) { //para que no tarde en cargar datos
