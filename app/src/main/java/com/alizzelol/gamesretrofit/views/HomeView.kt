@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,7 +27,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.alizzelol.gamesretrofit.components.CardGame
-import com.alizzelol.gamesretrofit.components.MainImage
 import com.alizzelol.gamesretrofit.components.MainTopBar
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
