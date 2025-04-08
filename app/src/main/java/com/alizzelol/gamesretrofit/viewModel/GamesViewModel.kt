@@ -54,6 +54,22 @@ class GamesViewModel @Inject constructor(private val repo: GamesRepository) : Vi
         }
     }
 
+    fun getGameByName(name : String){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                val result = repo.getGameByName(name)
+                state = state.copy(
+                    name = result?.name ?: "",
+                    description_raw = result?.description_raw ?: "",
+                    metacritic = result?.metacritic ?: 111, //111 para superar el 100, max puntuación
+                    website = result?.website ?: "",
+                    background_image = result?.background_image ?: "",
+
+                    )
+            }
+        }
+    }
+
     fun clean(){ //limpiar variables para que actualice más rápido, dejándolas en blanco
         state = state.copy(
             name = "",
