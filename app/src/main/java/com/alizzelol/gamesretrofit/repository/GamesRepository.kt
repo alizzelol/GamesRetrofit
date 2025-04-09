@@ -2,6 +2,7 @@ package com.alizzelol.gamesretrofit.repository
 
 import com.alizzelol.gamesretrofit.data.ApiGames
 import com.alizzelol.gamesretrofit.model.GameList
+import com.alizzelol.gamesretrofit.model.GamesModel
 import com.alizzelol.gamesretrofit.model.SingleGameModel
 import javax.inject.Inject
 
@@ -13,6 +14,10 @@ class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
             return response.body()?.results
         }
         return null
+    }
+
+    suspend fun getGamesPaging(page : Int, pageSize : Int) : GamesModel{
+        return apiGames.getGamesPaging(page, pageSize)
     }
 
     suspend fun getGameById(id:Int):SingleGameModel?{
