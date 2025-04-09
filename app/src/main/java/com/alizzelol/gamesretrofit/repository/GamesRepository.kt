@@ -4,6 +4,7 @@ import com.alizzelol.gamesretrofit.data.ApiGames
 import com.alizzelol.gamesretrofit.model.GameList
 import com.alizzelol.gamesretrofit.model.GamesModel
 import com.alizzelol.gamesretrofit.model.SingleGameModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
@@ -17,6 +18,9 @@ class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
     }
 
     suspend fun getGamesPaging(page : Int, pageSize : Int) : GamesModel{
+        delay(3000L)
+        //Para que carguen cada 3 segundos las siguientes páginas,
+        // no deja hacer scroll hasta que hayan cargado
         return apiGames.getGamesPaging(page, pageSize)
     }
 

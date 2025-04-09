@@ -5,6 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.alizzelol.gamesretrofit.data.GamesDataSource
 import com.alizzelol.gamesretrofit.model.GameList
 import com.alizzelol.gamesretrofit.repository.GamesRepository
 import com.alizzelol.gamesretrofit.state.GameState
@@ -28,6 +32,10 @@ class GamesViewModel @Inject constructor(private val repo: GamesRepository) : Vi
     init {
         fetchGames() //Conseguir juegos
     }
+
+    val gamesPage = Pager(PagingConfig(pageSize = 3)){
+        GamesDataSource(repo)
+    }.flow.cachedIn(viewModelScope) //Para que se vayan viendo de 3 en 3
 
     private fun fetchGames(){
         viewModelScope.launch { //Ejecutar en segundo plano IO

@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.alizzelol.gamesretrofit.components.CardGame
 import com.alizzelol.gamesretrofit.components.MainTopBar
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
@@ -47,7 +48,8 @@ fun HomeView(viewModel: GamesViewModel, navController: NavController){
 
 @Composable
 fun ContentHomeView(viewModel: GamesViewModel, pad:PaddingValues, navController: NavController){
-    val games by viewModel.games.collectAsState()
+    //val games by viewModel.games.collectAsState() ahora se hará con la paginación
+    val gamesPage = viewModel.gamesPage.collectAsLazyPagingItems()
     var search by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.padding(pad),
@@ -74,16 +76,20 @@ fun ContentHomeView(viewModel: GamesViewModel, pad:PaddingValues, navController:
             modifier = Modifier
                 .background(Color(CUSTOM_BLACK))
         ) {
-            items(games){ item ->
-                CardGame(item) {
-                    navController.navigate("DetailView/${item.id}/?${search}")
-                //llevar id del item, buscar por search
+            items(gamesPage.itemCount){ index -> //Necesita el contador
+                //Irá añadiendo juegos de 3 en 3, de tal manera que no parecerá que hay cambios
+                val item = gamesPage[index]
+                if(item != null){
+                    CardGame(item) {
+                        navController.navigate("DetailView/${item.id}/?${search}")
+                        //llevar id del item, buscar por search
+                    }
+                    Text(text = item.name,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = Color.White,
+                        modifier = Modifier.padding(start = 10.dp)
+                    )
                 }
-                Text(text = item.name,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 10.dp)
-                )
             }
         }
     }
