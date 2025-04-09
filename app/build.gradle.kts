@@ -57,6 +57,10 @@ dependencies {
     // Coil -> para el manejo de las imágenes que vengan de un servidor
     implementation("io.coil-kt:coil-compose:1.4.0")
 
+    //Paging 3
+    implementation("androidx.paging:paging-runtime:3.3.6")
+    implementation("androidx.paging:paging-compose:3.3.6")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

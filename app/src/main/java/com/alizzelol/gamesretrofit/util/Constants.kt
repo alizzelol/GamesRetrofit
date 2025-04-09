@@ -13,4 +13,5 @@ class Constants { //para guardar constantes que usar en el proyecto
 
 //https://api.rawg.io/api/games?key=833f198f41ac48a0b60636b697352d79
 //https://api.rawg.io/api/games/1223?key=833f198f41ac48a0b60636b697352d79
+//https://api.rawg.io/api/games/1223?key=833f198f41ac48a0b60636b697352d79&page=1&page_size=3
 // 1223 sería el id del juego para elegir uno solo
