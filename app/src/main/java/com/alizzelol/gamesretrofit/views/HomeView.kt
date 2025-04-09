@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.alizzelol.gamesretrofit.components.CardGame
+import com.alizzelol.gamesretrofit.components.Loader
 import com.alizzelol.gamesretrofit.components.MainTopBar
 import com.alizzelol.gamesretrofit.util.Constants.Companion.CUSTOM_BLACK
 import com.alizzelol.gamesretrofit.viewModel.GamesViewModel
@@ -71,6 +72,8 @@ fun ContentHomeView(viewModel: GamesViewModel, pad:PaddingValues, navController:
             modifier = Modifier.fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp),
         )
+
+        Loader() //Añadir función Loader
 
         LazyColumn (
             modifier = Modifier

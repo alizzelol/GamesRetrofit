@@ -2,12 +2,20 @@ package com.alizzelol.gamesretrofit.components
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -16,16 +24,22 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -146,6 +160,60 @@ fun RewiewCard(metascore : Int){ //Donde mostrar puntuación del juego
         }
     }
 }
+
+@Composable
+fun Loader(){
+    val circleColors: List<Color> = listOf(
+        Color(0xFF5851D8),
+        Color(0xFFA451D8),
+        Color(0xFFA21DA0),
+        Color(0xFF811466),
+        Color(0xFFDC0A2A),
+        Color(0xFFF14627),
+        Color(0xFFF1CA57),
+        Color(0xFFE8CC17),
+        Color(0xFF673AB7)
+    )
+
+    val infiniteTransition = rememberInfiniteTransition(label = "")
+    val rotateAnimation by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 360, easing = LinearEasing
+            )
+        ), label = ""
+    )
+
+    CircularProgressIndicator(
+        progress = { 1f },
+        modifier = Modifier
+            .size(size = 100.dp)
+            .rotate(degrees = rotateAnimation)
+            .border(
+                width = 4.dp,
+                brush = Brush.sweepGradient(circleColors),
+                shape = CircleShape
+            ),
+        color = MaterialTheme.colorScheme.background,
+        strokeWidth = 1.dp,
+        trackColor = ProgressIndicatorDefaults.linearTrackColor
+    )
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
